@@ -1,0 +1,234 @@
+/* initial */
+
+/* font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Praise', cursive; */
+
+* {
+  box-sizing: border-box;
+  font-family: "Nanum Gothic", sans-serif;
+  color: #002b5b;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  background-color: #f9f5eb;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../image/bg.png");
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* nav-left */
+
+.nav-left-img {
+  position: fixed;
+  width: 320px;
+  bottom: -90px;
+  left: -80px;
+}
+
+/* sec */
+
+.sec {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  position: fixed;
+  margin-top: 180px;
+  width: 650px;
+  height: 450px;
+  background-color: #e4dccf;
+  border: 1px solid #e4dccf;
+  border-radius: 40px;
+}
+
+.content .cat-img {
+  position: absolute;
+  top: -110px;
+  right: 40px;
+  width: 90px;
+  z-index: 1;
+}
+
+.content .new-write {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  width: 140px;
+  background-color: #ea5455;
+  border: 1px solid #ea5455;
+  border-radius: 40px;
+  text-align: center;
+  z-index: 1;
+}
+
+.new-write > p {
+  margin: 10px 0;
+}
+
+.new-write > p > a {
+  color: white;
+}
+
+.content .text-title > p {
+  margin: 10px 0 0 30px;
+  font-family: "Praise", cursive;
+  font-size: 70px;
+}
+
+.text-list {
+  display: block;
+  width: 580px;
+  height: 320px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-left: 35px;
+  margin-top: 15px;
+  padding-left: 0;
+}
+
+.todocontent {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.todocontent input[type="checkbox"] {
+  display: none;
+}
+
+.todocontent label {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.todocontent label span:nth-child(1) {
+  width: 24px;
+  height: 24px;
+  background-color: #e4dccf;
+  border: 3px solid #ea5455;
+  border-radius: 4px;
+  position: absolute;
+}
+
+.todocontent label span:nth-child(2) {
+  width: 14px;
+  height: 14px;
+  margin-left: 5px;
+  margin-top: 5px;
+  background-color: #ea5455;
+  border: 1px solid #ea5455;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+}
+
+.todocontent input[type="checkbox"]:checked + label span:nth-child(2) {
+  opacity: 1;
+}
+
+.todo-box {
+  margin-left: 40px;
+}
+
+.todo-write {
+  width: 540px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-write p {
+  margin: 0;
+}
+
+.todo-write-text {
+  width: 455px;
+}
+
+.todo-write-content {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+
+.todo-write-writer {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.todo-button {
+  justify-content: right;
+  margin-right: 10px;
+}
+
+.todo-button img {
+  width: 20px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.todo-box > hr {
+  color: #ea5455;
+  background-color: #ea5455;
+  height: 2px;
+  border: none;
+}
+
+/* nav-right */
+
+.login-register {
+  position: fixed;
+  top: 40px;
+  display: flex;
+  justify-content: center;
+  width: 256px;
+  height: auto;
+  align-items: center;
+  padding-left: 0;
+}
+
+.login-register li {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-left: 20px;
+}
+
+.login-register li:first-child {
+  margin-left: 0;
+}
+
+.login-register li:last-child {
+  padding-right: 30px;
+}

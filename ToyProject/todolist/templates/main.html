@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do list (Toy)</title>
+
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/main_style.css' %}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Praise&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <navigation class="nav-left">
+      <div class="nav-left-img">
+        <img src="{% static 'image/hand.png' %}" alt="고양이 손" />
+      </div>
+    </navigation>
+    <section class="sec">
+      <div class="content">
+        <div class="cat-img">
+          <img src="{% static 'image/cat.png' %}" alt="고양이" />
+        </div>
+        <div class="new-write">
+          <p><a href="{% url 'todolist:write' %}">+ 새로운 일정</a></p>
+        </div>
+        <div class="text-title">
+          <p>To do list</p>
+        </div>
+
+        <div class="text-list">
+          {% for todo in todos%}
+          <div class="todoitem">
+            <div class="todocontent">
+              {% if request.user.is_authenticated %}
+              <input
+                type="checkbox"
+                id="check{{ todo.pk }}"
+                name="check{{ todo.pk }}"
+                {%
+                if
+                todo.checked
+                %}checked{%
+                endif
+                %}
+                value="1"
+                onchange="saveCheckboxState({{ todo.pk }})"
+              />
+              {% endif %}
+              <label for="check{{ todo.pk }}">
+                <span></span><span></span>
+                <div class="todo-box">
+                  <div class="todo-write">
+                    <div class="todo-write-text">
+                      <div class="todo-write-content">{{ todo.content }}</div>
+                      <div class="todo-write-writer">{{todo.author}}</div>
+                    </div>
+                    <div class="todo-button">
+                      <a href="{% url 'todolist:rewrite' id=todo.pk %}"
+                        ><img
+                          src="{% static 'image/write.png' %}"
+                          alt="글 수정 버튼"
+                      /></a>
+                      <a href="{% url 'todolist:delete' id=todo.pk %}"
+                        ><img
+                          src="{% static 'image/delete.png' %}"
+                          alt="글 삭제 버튼"
+                      /></a>
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+              </label>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    <navigation class="nav-right">
+      <ul class="login-register">
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'accounts:logout' %}">로그아웃</a></li>
+        {% else %}
+        <li><a href="{% url 'accounts:login' %}">로그인</a></li>
+        <li>|</li>
+        <li><a href="{% url 'accounts:register' %}">회원가입</a></li>
+        {% endif %}
+      </ul>
+    </navigation>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          const todoId = checkbox.id.replace("check", "");
+          const storedValue = localStorage.getItem(`todo_${todoId}`);
+          if (storedValue) {
+            checkbox.checked = JSON.parse(storedValue);
+          }
+          checkbox.addEventListener("change", function() {
+            localStorage.setItem(`todo_${todoId}`, checkbox.checked);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

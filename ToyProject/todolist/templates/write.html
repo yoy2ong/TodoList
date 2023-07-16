@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do list (Toy)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/write_style.css' %}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Praise&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <navigation class="nav-left">
+      <div class="nav-left-img">
+        <img src="{% static 'image/hand.png' %}" alt="고양이 손" />
+      </div>
+    </navigation>
+
+    <section class="sec">
+      <div class="content">
+        <div class="cat-img">
+          <img src="{% static 'image/cat.png' %}" alt="고양이" />
+        </div>
+        <div class="text-title">
+          <p>New</p>
+        </div>
+        <form action="{%url 'todolist:write' %}" method="post">
+          {%csrf_token%}
+          <div class="col-8">
+            <input
+              type="text"
+              name="content"
+              placeholder="새로운 To do list를 작성해주세요"
+            />
+          </div>
+          <div class="submit-btn">
+            <input type="submit" value="등록하기" name="submit" />
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <navigation class="nav-right">
+      <ul class="login-register">
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'accounts:logout' %}">로그아웃</a></li>
+        {% else %}
+        <li><a href="{% url 'accounts:login' %}">로그인</a></li>
+        <li>|</li>
+        <li><a href="{% url 'accounts:register' %}">회원가입</a></li>
+        {% endif %}
+      </ul>
+    </navigation>
+  </body>
+</html>

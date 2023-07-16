@@ -1,0 +1,206 @@
+/* initial */
+
+/* font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Praise', cursive; */
+
+* {
+  box-sizing: border-box;
+  font-family: "Nanum Gothic", sans-serif;
+  color: #002b5b;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  background-color: #f9f5eb;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../image/bg.png");
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* nav-left */
+
+.nav-left-img {
+  position: fixed;
+  width: 320px;
+  bottom: -90px;
+  left: -80px;
+}
+
+/* sec */
+
+.sec {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  position: fixed;
+  margin-top: 145px;
+  width: 650px;
+  height: 500px;
+  background-color: #e4dccf;
+  border: 1px solid #e4dccf;
+  border-radius: 40px;
+}
+
+.content .cat-img {
+  position: absolute;
+  top: -110px;
+  right: 40px;
+  width: 90px;
+  z-index: 1;
+}
+
+.content .text-title > p {
+  margin: 30px 0 0 30px;
+  font-family: "Praise", cursive;
+  font-size: 70px;
+  display: flex;
+  justify-content: center;
+}
+
+/* nav-right */
+
+.login-register {
+  position: fixed;
+  top: 40px;
+  display: flex;
+  justify-content: center;
+  width: 256px;
+  height: auto;
+  align-items: center;
+  padding-left: 0;
+}
+
+.login-register li {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-left: 40px;
+}
+
+.login-register li:first-child {
+  margin-left: 0;
+}
+
+.login-register li:last-child {
+  padding-right: 30px;
+}
+
+.login-register li {
+  font-size: 20px;
+  font-weight: bolder;
+  margin-left: 20px;
+}
+
+/*추가 코드*/
+
+.id {
+  background-color: #ea5455;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  width: 160px;
+  height: 40px;
+  margin: 10px;
+  margin-left: 60px;
+  margin-top: 40px;
+}
+
+.psw_2 {
+  background-color: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  width: 160px;
+  height: 40px;
+  margin: 10px;
+  margin-left: 60px;
+  margin-top: 40px;
+}
+
+.id > p {
+  color: white;
+  font-size: 17px;
+}
+
+.wrap {
+  display: flex;
+}
+
+#id_text {
+  width: 300px;
+  height: 50px;
+  border-color: #ea5455;
+  background: 0;
+  outline: none;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 29px 10px 10px 30px;
+  padding-left: 10px;
+}
+
+#psw_text {
+  width: 300px;
+  height: 50px;
+  border-color: #ea5455;
+  background: 0;
+  outline: none;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 29px 10px 10px 30px;
+  padding-left: 10px;
+}
+
+.join_btn {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+#join {
+  background-color: #002b5b;
+  color: white;
+  border: none;
+  width: 140px;
+  height: 40px;
+  margin: 10px;
+  margin-top: 35px;
+  font-size: 17px;
+}

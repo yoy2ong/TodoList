@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do list (Toy)</title>
+
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/register_style.css' %}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Praise&display=swap"
+      rel="stylesheet"
+    />
+    <script src="{% static 'js/register.js' %}"></script>
+  </head>
+  <body>
+    <navigation class="nav-left">
+      <div class="nav-left-img">
+        <img src="{% static 'image/hand.png' %}" alt="고양이 손" />
+      </div>
+    </navigation>
+    <section class="sec">
+      <div class="content">
+        <div class="cat-img">
+          <img src="{% static 'image/cat.png' %}" alt="고양이" />
+        </div>
+        <div class="text-title">
+          <p>Register</p>
+        </div>
+        <form
+          method="POST"
+          action="{% url 'accounts:register' %}"
+          name="userInfo"
+          onsubmit="return password_check(event, '{{ error }}');"
+        >
+          {% csrf_token %}
+          <div class="wrap">
+            <div class="id">
+              <p>아이디</p>
+            </div>
+            <div class="id_textBox">
+              <input
+                id="id_text"
+                type="text"
+                name="username"
+                value=""
+                placeholder="아이디를 입력하세요"
+              />
+            </div>
+          </div>
+          <div class="wrap">
+            <div class="id">
+              <p>비밀번호</p>
+            </div>
+            <div class="id_textBox">
+              <input
+                id="psw_text"
+                type="password"
+                name="password"
+                value=""
+                placeholder="비밀번호를 입력하세요"
+              />
+            </div>
+          </div>
+          <div class="wrap">
+            <div class="psw_2"></div>
+            <div class="id_textBox">
+              <input
+                id="psw_text"
+                type="password"
+                name="password2"
+                value=""
+                placeholder="비밀번호를 다시 한 번 입력하세요"
+              />
+            </div>
+          </div>
+          <div class="join_btn">
+            <input id="join" type="submit" value="회원가입" />
+          </div>
+        </form>
+      </div>
+    </section>
+    <navigation class="nav-right">
+      <ul class="login-register">
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'accounts:logout' %}">로그아웃</a></li>
+        {% else %}
+        <li><a href="{% url 'accounts:login' %}">로그인</a></li>
+        <li>|</li>
+        <li><a href="{% url 'accounts:register' %}">회원가입</a></li>
+        {% endif %}
+      </ul>
+    </navigation>
+    <script>
+      var error = "{{ error }}";
+      if (error) {
+        alert(error);
+      }
+    </script>
+  </body>
+</html>

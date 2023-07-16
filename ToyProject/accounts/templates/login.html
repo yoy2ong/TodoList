@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="kor">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do list (Toy)</title>
+
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/login_style.css' %}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Praise&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <navigation class="nav-left">
+      <div class="nav-left-img">
+        <img src="{% static 'image/hand.png' %}" alt="고양이 손" />
+      </div>
+    </navigation>
+    <section class="sec">
+      <div class="content">
+        <div class="cat-img">
+          <img src="{% static 'image/cat.png' %}" alt="고양이" />
+        </div>
+        <div class="text-title">
+          <p>Login</p>
+        </div>
+        <form action="{% url 'accounts:login' %}" method="POST">
+          {% csrf_token %}
+          <div class="username">
+            <p>아이디</p>
+          </div>
+          <input
+            id="username"
+            type="text"
+            name="username"
+            value=""
+            placeholder="아이디를 입력하세요"
+          />
+          <div class="password">
+            <p>비밀번호</p>
+          </div>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            value=""
+            placeholder="비밀번호를 입력하세요"
+          />
+          <button type="submit" type="submit" value="Login">로그인</button>
+        </form>
+      </div>
+    </section>
+    <navigation class="nav-right">
+      <ul class="login-register">
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'accounts:login' %}">로그인</a></li>
+        <li>|</li>
+        <li><a href="{% url 'accounts:register' %}">회원가입</a></li>
+        {% else %}
+        <li><a href="{% url 'accounts:register' %}">회원가입</a></li>
+        {% endif %}
+      </ul>
+    </navigation>
+    {% if error %}
+    <script>
+        alert("{{ error }}");
+    </script>
+    {% endif %}
+  </body>
+</html>
